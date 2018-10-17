@@ -1,0 +1,36 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!-- status：log4j2自身内部的信息输出；
+     monitorInterval：每隔X秒,自动监控该配置文件是否有变化,如果变化,则自动根据文件内容重新配置 -->
+<Configuration status="ERROR" monitorInterval="1800">
+    <!-- 变量定义 -->
+    <Properties>
+        <Property name="logPath">logs</Property>
+    </Properties>
+
+    <Appenders>
+        <!-- 控制台输出 -->
+        <Console name="console" target="SYSTEM_OUT">
+            <PatternLayout pattern="%highlight{%d{yyyy.MM.dd 'at' HH:mm:ss z} %-5level %class{36} %M() @%L - %msg%n}{FATAL=Red, ERROR=Magenta, WARN=Yellow, INFO=White}"/>
+        </Console>
+
+        <!-- 文件输出 -->
+        <RollingFile name="uc-service" fileName="${logPath}/uc-service.log"
+                     filePattern="${logPath}/uc-service-%d{yyyy-MM-dd}_%i.log">
+            <PatternLayout pattern="[%p] [%d{yyyy-MM-dd HH:mm:ss}] [Class=%C | Method=%M | Line=%L] | %m%n"/>
+            <Policies>
+                <TimeBasedTriggeringPolicy modulate="true" interval="24"/>
+                <SizeBasedTriggeringPolicy size="50MB"/>
+            </Policies>
+        </RollingFile>
+    </Appenders>
+
+    <Loggers>
+        <logger name="com.thinvent.nj" level="DEBUG"/>
+        <logger name="org.apache.ibatis" level="DEBUG"/>
+        <logger name="org.mybatis" level="DEBUG"/>
+        <Root level="INFO">
+            <AppenderRef ref="console"/>
+            <AppenderRef ref="uc-service"/>
+        </Root>
+    </Loggers>
+</Configuration>

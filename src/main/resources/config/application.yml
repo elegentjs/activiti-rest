@@ -1,0 +1,18 @@
+# mybatis
+mybatis:
+  mapperPackage: com.thinvent.nj.activiti.mapper
+  entityPackage: com.thinvent.nj.activiti.entity
+  switch: 0
+
+
+redis:
+  switch: 0
+
+#actuator management
+management:
+  context-path: /actuator
+  security:
+    enabled: false
+  health:
+    redis:
+      enabled: false

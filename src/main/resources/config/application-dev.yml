@@ -1,0 +1,12 @@
+server:
+  context-path: /
+  port: 8080
+
+# jdbc
+spring:
+  datasource:
+    url: jdbc:oracle:thin:@172.16.5.12:1521:oradb
+    username: zhfa
+    password: zhfa
+  messages:
+      basename: msg/messages-dev,msg/messages

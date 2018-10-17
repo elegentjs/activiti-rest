@@ -1,0 +1,15 @@
+server:
+  context-path: /activiti
+  port: 8080
+
+# jdbc
+spring:
+  datasource:
+    url: jdbc:oracle:thin:@172.16.5.12:1521:oradb
+    username: zhfa
+    password: zhfa
+
+# messageSource
+spring:
+  messages:
+    basename: msg/messages-pro,msg/messages
