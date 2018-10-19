@@ -14,8 +14,8 @@
         </Console>
 
         <!-- 文件输出 -->
-        <RollingFile name="uc-service" fileName="${logPath}/uc-service.log"
-                     filePattern="${logPath}/uc-service-%d{yyyy-MM-dd}_%i.log">
+        <RollingFile name="activiti-rest" fileName="${logPath}/activiti-rest.log"
+                     filePattern="${logPath}/activiti-rest-%d{yyyy-MM-dd}_%i.log">
             <PatternLayout pattern="[%p] [%d{yyyy-MM-dd HH:mm:ss}] [Class=%C | Method=%M | Line=%L] | %m%n"/>
             <Policies>
                 <TimeBasedTriggeringPolicy modulate="true" interval="24"/>
@@ -30,7 +30,7 @@
         <logger name="org.mybatis" level="DEBUG"/>
         <Root level="INFO">
             <AppenderRef ref="console"/>
-            <AppenderRef ref="uc-service"/>
+            <AppenderRef ref="activiti-rest"/>
         </Root>
     </Loggers>
 </Configuration>
