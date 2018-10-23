@@ -20,19 +20,16 @@
         <dependency>
             <groupId>com.thinvent.nj</groupId>
             <artifactId>framework-mybatis</artifactId>
-            <version>${framework.version}</version>
         </dependency>
 
         <dependency>
             <groupId>com.thinvent.nj</groupId>
             <artifactId>framework-view</artifactId>
-            <version>${framework.version}</version>
         </dependency>
 
         <dependency>
             <groupId>com.thinvent.nj</groupId>
             <artifactId>framework-activiti</artifactId>
-            <version>${framework.version}</version>
         </dependency>
 
 

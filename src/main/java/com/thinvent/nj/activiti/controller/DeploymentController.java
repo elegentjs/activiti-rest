@@ -33,7 +33,7 @@ public class DeploymentController extends AbstractActivitController {
         List<Map<String, Object>> definitions = new ArrayList<>(target.size());
 
         for (ProcessDefinition definition : target) {
-            Map<String, Object> map = new HashMap<>();
+            Map<String, Object> map = new HashMap<>(15);
             map.put("id", definition.getId());
             map.put("category", definition.getCategory());
             map.put("key", definition.getKey());
