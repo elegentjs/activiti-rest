@@ -27,7 +27,7 @@
 
                 pageLogic.uploader = $("#uploader").upload({
                     uploadText: "上传流程定义",
-                    server: masterpage.ctxp + "/processes/deploy"
+                    server: masterpage.ctxp + pageLogic.initData.restUrlPrefix + "/deploy"
                 }).uploader;
 
             },

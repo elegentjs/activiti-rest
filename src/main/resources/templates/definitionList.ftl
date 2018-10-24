@@ -36,7 +36,7 @@
 
 <ex-section id="ScriptBody">
     <script type="text/javascript" src="<@spring.message "frontend.url"/>/js/vendor/webuploader.js"></script>
-    <script type="text/javascript" src="${request.contextPath}/js/main/modules/processList.js?v=<@spring.message 'js.version'/>"></script>
+    <script type="text/javascript" src="${request.contextPath}/js/main/modules/definitionList.js?v=<@spring.message 'js.version'/>"></script>
     <script type="text/javascript">
         pageLogic.initData = {
             modalParams: [
@@ -46,7 +46,7 @@
                     title: "流程定义"
                 }
             ],
-            restUrlPrefix: "/processes",
+            restUrlPrefix: "/definitions",
             queryMsg: {
             }
         };

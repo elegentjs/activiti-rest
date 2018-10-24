@@ -18,12 +18,12 @@ import java.util.Map;
 import java.util.zip.ZipInputStream;
 
 @Controller
-@RequestMapping(path = "/processes")
-public class DeploymentController extends AbstractActivitController {
+@RequestMapping(path = "/definitions")
+public class DefinitionController extends AbstractActivitController {
 
     @RequestMapping(method = RequestMethod.GET)
     public String toHtml() {
-        return "processList";
+        return "definitionList";
     }
 
     @RequestMapping(path = "/search/page", method = RequestMethod.POST)

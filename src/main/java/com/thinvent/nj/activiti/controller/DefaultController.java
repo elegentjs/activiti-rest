@@ -8,7 +8,7 @@ public class DefaultController {
 
     @RequestMapping("/")
     public String rootPage(){
-        return "redirect:/processes";
+        return "redirect:/definitions";
     }
 
 }

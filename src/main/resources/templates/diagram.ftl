@@ -17,7 +17,7 @@
     <div class="row" style="margin-top: 10px;">
         <div class="col-sm-12">
             <div id="mainGrid">
-                <img src="${request.contextPath}/processes/${id}/showDiagram">
+                <img src="${request.contextPath}/definitions/${id}/showDiagram">
             </div>
         </div>
     </div>
