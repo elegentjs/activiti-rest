@@ -1,5 +1,6 @@
 package com.thinvent.nj.activiti;
 
+import org.activiti.spring.boot.DataSourceProcessEngineAutoConfiguration;
 import org.mybatis.spring.boot.autoconfigure.MybatisAutoConfiguration;
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
@@ -12,7 +13,10 @@ import java.io.IOException;
  * @author liupeijun
  */
 @SpringBootApplication(exclude = {
-        MybatisAutoConfiguration.class
+        MybatisAutoConfiguration.class,
+        org.springframework.boot.autoconfigure.security.SecurityAutoConfiguration.class,
+        org.activiti.spring.boot.SecurityAutoConfiguration.class,
+        DataSourceProcessEngineAutoConfiguration.class
 })
 @ComponentScan("com.thinvent.nj")
 public class Application {

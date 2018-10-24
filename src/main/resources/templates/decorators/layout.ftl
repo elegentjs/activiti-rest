@@ -11,7 +11,10 @@
         <div id="page-wrapper"style="margin-left: 0">
             <div id="title-breadcrumb-option-demo" class="page-title-breadcrumb navbar-fixed-top" style="background-color: #2a3b4c; box-shadow: 3px 3px 3px #888">
                 <div class="page-header pull-left">
-                    <div class="page-title" style="color: #FFF"><sitemesh:write property='title'/> <span style="font-size: 16px!important;">V1.0.0</span> </div>
+                    <div class="page-title" style="color: #FFF"><@spring.message "logoName"/> <span style="font-size: 16px!important;">V1.0.0</span> </div>
+                </div>
+                <div class="page-header pull-right">
+                    <div class="page-title" style="font-size: 22px;"></div>
                 </div>
                 <div class="clearfix"></div>
             </div>

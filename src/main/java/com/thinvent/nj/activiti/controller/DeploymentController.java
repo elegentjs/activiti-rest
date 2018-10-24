@@ -8,6 +8,7 @@ import org.activiti.engine.repository.ProcessDefinition;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.*;
 import org.springframework.web.multipart.MultipartFile;
+import org.springframework.web.servlet.ModelAndView;
 
 import java.io.InputStream;
 import java.util.ArrayList;
@@ -55,7 +56,7 @@ public class DeploymentController extends AbstractActivitController {
      */
     @RequestMapping(path = "/deploy")
     @ResponseBody
-    public ResponseEntity deploy(@RequestParam(value = "file", required = true) MultipartFile file) throws Exception {
+    public ResponseEntity deploy(@RequestParam(value = "file") MultipartFile file) throws Exception {
 
         // 获取上传的文件名
         String fileName = file.getOriginalFilename();
@@ -90,4 +91,26 @@ public class DeploymentController extends AbstractActivitController {
         return ResponseEntity.ok();
     }
 
+
+    @RequestMapping(path = "/{id}/download")
+    public void download(@PathVariable("id") String id) {
+        ProcessDefinition processDefinition = repositoryService.createProcessDefinitionQuery().processDefinitionId(id).singleResult();
+
+        download(processDefinition.getResourceName(), repositoryService.getProcessModel(id));
+    }
+
+
+    @RequestMapping(path = "/{id}/diagram", method = RequestMethod.GET)
+    public ModelAndView diagram(@PathVariable("id") String id) {
+        ModelAndView modelAndView = new ModelAndView("diagram");
+        modelAndView.addObject("id", id);
+
+        return modelAndView;
+    }
+
+    @RequestMapping(path = "/{id}/showDiagram", method = RequestMethod.GET)
+    public void showDiagram(@PathVariable("id") String id) {
+        ProcessDefinition processDefinition = repositoryService.createProcessDefinitionQuery().processDefinitionId(id).singleResult();
+        download(processDefinition.getDiagramResourceName(), repositoryService.getProcessDiagram(id));
+    }
 }

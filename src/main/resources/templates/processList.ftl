@@ -8,17 +8,15 @@
     </ex-section>
 </head>
 <body>
-
 <div>
     <!-- 工具栏 -->
     <div class="row">
         <div class="col-sm-12">
             <div class="pull-left">
-                <button class="btn btn-sm btn-danger" id="delBtn">
-                    <i class="fa fa-trash-o"></i> Delete
+                <button class="btn btn-sm btn-danger" id="delBtn" >
+                    <a target="_blank" style="color: #FFF;" href="${request.contextPath}/modeler/create">新建流程</a>
                 </button>
             </div>
-
             <div class="pull-right">
                 <div id="uploader">
                 </div>
