@@ -113,4 +113,12 @@ public class DefinitionController extends AbstractActivitController {
         ProcessDefinition processDefinition = repositoryService.createProcessDefinitionQuery().processDefinitionId(id).singleResult();
         download(processDefinition.getDiagramResourceName(), repositoryService.getProcessDiagram(id));
     }
+
+    @RequestMapping(path = "/{id}/instances/count", method = RequestMethod.POST)
+    @ResponseBody
+    public ResponseEntity getInstanceCount(@PathVariable("id") String id) {
+        int count = runtimeService.createProcessInstanceQuery().processDefinitionId(id).list().size();
+
+        return ResponseEntity.ok(count);
+    }
 }

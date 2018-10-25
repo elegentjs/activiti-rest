@@ -6,7 +6,7 @@
                 var columns = [
                     {field: "checked", checkbox: true},
                     {field: "num", title: "序号", width: 5, align: "center", formatter: common.formatter.index},
-                    {field: "id", title: "流程定义ID", width: 80, align: "center"},
+                    {field: "id", title: "流程定义ID", width: 80, align: "center", formatter: pageLogic.formatter.id},
                     {field: "name", title: "名称", width: 80, align: "center"},
                     {field: "key", title: "流程定义Key", width: 80, align: "center"},
                     {field: "resourceName", title: "资源名称", width: 80, align: "center"},
@@ -26,7 +26,7 @@
             after: function () {
 
                 pageLogic.uploader = $("#uploader").upload({
-                    uploadText: "上传流程定义",
+                    uploadText: "上传BPMN",
                     server: masterpage.ctxp + pageLogic.initData.restUrlPrefix + "/deploy"
                 }).uploader;
 
@@ -43,12 +43,24 @@
         },
 
         formatter: {
+            id: function (val, row) {
+                common.postJSON({
+                    url: pageLogic.initData.restUrlPrefix + "/" + val + "/instances/count"
+                }, function (data) {
+                    if (data === 0) return;
+
+                    $("#btTable tr[data-uniqueid='" + val + "']").find("td").eq(2).html(val + "<span title='当前有" + data + "个流程实例已启动' style='color: red; font-size: 1.2em'> [" + data + "]</span>");
+                });
+
+                return val;
+            },
+
             operation: function (val, row) {
-                return "<i class='fa fa-download' onclick='pageLogic.download(\"" + row["id"] + "\")'></i>&nbsp;&nbsp;&nbsp;<i class='fa fa-trash-o' onclick='pageLogic.del(\"" + row["id"] + "\")'></i>";
+                return "<i class='fa fa-download' style='font-size: 1.2em' onclick='pageLogic.download(\"" + row["id"] + "\")'></i>&nbsp;&nbsp;&nbsp;<i class='fa fa-trash-o' onclick='pageLogic.del(\"" + row["id"] + "\")'></i>";
             },
 
             diagram: function (val, row) {
-                return "<a style='color: dodgerblue' title='查看流程图' target='_blank' href='" + masterpage.ctxp + pageLogic.initData.restUrlPrefix + "/" + row["id"] + "/diagram" + "'>" + val + "</a>";
+                return "<a style='color: dodgerblue; font-size: 1.2em' title='查看流程图' target='_blank' href='" + masterpage.ctxp + pageLogic.initData.restUrlPrefix + "/" + row["id"] + "/diagram" + "'>" + val + "</a>";
             }
         },
 

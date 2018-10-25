@@ -1,7 +1,12 @@
 package com.thinvent.nj.activiti.controller;
 
 import com.alibaba.fastjson.JSONObject;
+import com.fasterxml.jackson.databind.ObjectMapper;
+import com.fasterxml.jackson.databind.node.ObjectNode;
 import com.thinvent.nj.common.rest.ResponseEntity;
+import org.activiti.bpmn.converter.BpmnXMLConverter;
+import org.activiti.bpmn.model.BpmnModel;
+import org.activiti.editor.language.json.converter.BpmnJsonConverter;
 import org.activiti.engine.repository.Model;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.*;
@@ -56,5 +61,33 @@ public class ModelController extends AbstractActivitController {
         repositoryService.deleteModel(id);
 
         return ResponseEntity.ok();
+    }
+
+    @RequestMapping(path = "/{id}/deploy", method = RequestMethod.POST)
+    @ResponseBody
+    public ResponseEntity deploy(@PathVariable("id") String id) throws Exception {
+        Model modelData = repositoryService.getModel(id);
+        ObjectNode modelNode = (ObjectNode) new ObjectMapper().readTree(repositoryService.getModelEditorSource(modelData.getId()));
+        byte[] bpmnBytes = null;
+
+        BpmnModel model = new BpmnJsonConverter().convertToBpmnModel(modelNode);
+        bpmnBytes = new BpmnXMLConverter().convertToXML(model);
+
+        String processName = modelData.getName() + ".bpmn";
+
+        repositoryService.createDeployment().name(modelData.getName()).addString(processName, new String(bpmnBytes,"UTF-8")).deploy();
+
+        return ResponseEntity.ok();
+    }
+
+
+    @RequestMapping(path = "/{id}/definitions/count", method = RequestMethod.POST)
+    @ResponseBody
+    public ResponseEntity definitionsCount(@PathVariable("id") String id) {
+        Model modelData = repositoryService.getModel(id);
+        String processName = modelData.getName() + ".bpmn";
+        int count = repositoryService.createProcessDefinitionQuery().processDefinitionResourceName(processName).list().size();
+
+        return ResponseEntity.ok(count);
     }
 }

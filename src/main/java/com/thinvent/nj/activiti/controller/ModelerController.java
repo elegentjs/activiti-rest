@@ -8,7 +8,6 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
-import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import java.io.IOException;
 
@@ -23,7 +22,7 @@ public class ModelerController extends AbstractActivitController {
      * 创建模型
      */
     @RequestMapping("/create")
-    public void create(HttpServletRequest request, HttpServletResponse response) throws IOException {
+    public void create(HttpServletResponse response) throws IOException {
         //初始化一个空模型
         Model model = repositoryService.newModel();
 
@@ -54,6 +53,7 @@ public class ModelerController extends AbstractActivitController {
                 "http://b3mn.org/stencilset/bpmn2.0#");
         editorNode.set("stencilset", stencilSetNode);
         repositoryService.addModelEditorSource(id, editorNode.toString().getBytes("utf-8"));
+
         response.sendRedirect("/modeler.html?modelId=" + id);
     }
 

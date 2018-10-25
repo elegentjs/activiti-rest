@@ -5,6 +5,13 @@
     <ex-section id="CSS">
         <!--引入CSS-->
         <link rel="stylesheet" type="text/css" href="<@spring.message "frontend.url"/>/css/vendor/uploader/webuploader.css">
+
+        <style type="text/css">
+            #title-breadcrumb-option-demo > ul > li > a[href="/definitions"] {
+                background-color: #fff;
+            }
+        </style>
+
     </ex-section>
 </head>
 <body>
@@ -35,6 +42,9 @@
     <script type="text/javascript" src="<@spring.message "frontend.url"/>/js/vendor/webuploader.js"></script>
     <script type="text/javascript" src="${request.contextPath}/js/main/modules/definitionList.js?v=<@spring.message 'js.version'/>"></script>
     <script type="text/javascript">
+
+        $("#title-breadcrumb-option-demo > ul > li > a[href='/definitions']").css("background-color", "#FFF");
+
         pageLogic.initData = {
             modalParams: [
                 {

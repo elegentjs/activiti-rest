@@ -34,6 +34,8 @@
     <script type="text/javascript" src="<@spring.message "frontend.url"/>/js/vendor/webuploader.js"></script>
     <script type="text/javascript" src="${request.contextPath}/js/main/modules/modelList.js?v=<@spring.message 'js.version'/>"></script>
     <script type="text/javascript">
+        $("#title-breadcrumb-option-demo > ul > li > a[href='/models']").css("background-color", "#FFF");
+
         pageLogic.initData = {
             modalParams: [
                 {
