@@ -13,10 +13,9 @@
     <div class="row">
         <div class="col-sm-12">
             <div class="pull-left">
-            </div>
-            <div class="pull-right">
-                <div id="uploader">
-                </div>
+                <button class="btn btn-sm btn-danger" id="delBtn" >
+                    <a target="_blank" style="color: #FFF;" href="${request.contextPath}/modeler/create">新建流程模型</a>
+                </button>
             </div>
         </div>
     </div>
@@ -33,17 +32,17 @@
 
 <ex-section id="ScriptBody">
     <script type="text/javascript" src="<@spring.message "frontend.url"/>/js/vendor/webuploader.js"></script>
-    <script type="text/javascript" src="${request.contextPath}/js/main/modules/definitionList.js?v=<@spring.message 'js.version'/>"></script>
+    <script type="text/javascript" src="${request.contextPath}/js/main/modules/modelList.js?v=<@spring.message 'js.version'/>"></script>
     <script type="text/javascript">
         pageLogic.initData = {
             modalParams: [
                 {
                     width: 800,
                     height: 400,
-                    title: "流程定义"
+                    title: "流程模型"
                 }
             ],
-            restUrlPrefix: "/definitions",
+            restUrlPrefix: "/models",
             queryMsg: {
             }
         };
