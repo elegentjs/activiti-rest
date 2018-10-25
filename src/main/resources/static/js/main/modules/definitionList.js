@@ -49,7 +49,7 @@
                 }, function (data) {
                     if (data === 0) return;
 
-                    $("#btTable tr[data-uniqueid='" + val + "']").find("td").eq(2).html(val + "<span title='当前有" + data + "个流程实例已启动' style='color: red; font-size: 1.2em'> [" + data + "]</span>");
+                    $("#btTable tr[data-uniqueid='" + val + "']").find("td").eq(2).html("<a title='当前有" + data + "个流程实例已启动' style='text-decoration: underline' target='_blank' href='" + masterpage.ctxp + "/instances?definitionId=" + val + "'>" + val + "<span  style='color: red; font-size: 1.2em'> [" + data + "]</span>" + "</a>" );
                 });
 
                 return val;

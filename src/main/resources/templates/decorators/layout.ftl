@@ -11,7 +11,7 @@
         <div id="page-wrapper"style="margin-left: 0">
             <div id="title-breadcrumb-option-demo" class="page-title-breadcrumb navbar-fixed-top" style="background-color: #2a3b4c; box-shadow: 3px 3px 3px #888">
                 <div class="page-header pull-left">
-                    <div class="page-title" style="color: #FFF"><@spring.message "logoName"/> <span style="font-size: 16px!important;">V1.0.0</span></div>
+                    <div class="page-title" style="color: #FFF"><a href="${request.contextPath}" style="color: #FFF!important;"><@spring.message "logoName"/></a> <span style="font-size: 16px!important;"><@spring.message "version"/></span></div>
                 </div>
 
                 <ul class="nav navbar-nav" style="margin-left: 5px;">
@@ -23,7 +23,9 @@
                     </li>
                 </ul>
                 <div class="page-header pull-right">
-                    <div class="page-title" style="font-size: 22px;"></div>
+                    <div class="page-title" style="font-size: 22px;">
+                        <a target="_blank" href="https://www.activiti.org/5.x/userguide/#_rest_api">Activiti User Guide</a>
+                    </div>
                 </div>
                 <div class="clearfix"></div>
             </div>
