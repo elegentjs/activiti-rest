@@ -6,9 +6,8 @@ import org.springframework.web.bind.annotation.RequestMapping;
 @Controller
 public class DefaultController {
 
-    @RequestMapping("/")
-    public String rootPage(){
+    @RequestMapping(path = "/index")
+    public String index() {
         return "redirect:/models";
     }
-
 }
