@@ -14,7 +14,7 @@
                     {field: "deploymentId", title: "deploymentId", width: 80, align: "center"},
                     {field: "businessKey", title: "businessKey", width: 80, align: "center"},
 
-                    {field: "processVariables", title: "流程变量", width: 80, align: "center"},
+                    {field: "processVariables", title: "流程变量", width: 80, align: "center", formatter: pageLogic.formatter.processVariables},
 
                     {field: "tenantId", title: "tenantId", width: 80, align: "center"},
                     {field: "operation", title: "操作", width: 120, align: "center", formatter: pageLogic.formatter.operation}
@@ -45,6 +45,10 @@
         formatter: {
             operation: function (val, row) {
                 return "<a target='_blank' href='" + masterpage.ctxp + pageLogic.initData.restUrlPrefix + "/" + row["id"] + "/diagram" + "'><i class='fa fa-building-o' title='查看流程进度' style='font-size: 1.2em'></i></a>&nbsp;&nbsp;&nbsp;";
+            },
+
+            processVariables: function (val, row) {
+                return JSON.stringify(val);
             }
 
         },
