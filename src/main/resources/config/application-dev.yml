@@ -10,3 +10,18 @@ spring:
     password: zhfa
   messages:
       basename: msg/messages-dev,msg/messages
+
+#dubbo config
+dubbo:
+  zookeeper:
+    address: 172.16.5.210:2181
+  version:
+
+
+#spring boot admin
+  boot:
+    admin:
+      url: http://172.16.5.210:12306
+      client:
+        name: activiti-rest
+        prefer-ip: true

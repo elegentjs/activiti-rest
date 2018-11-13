@@ -1,3 +1,6 @@
+dubbo:
+  applicationName: activiti-rest
+
 # mybatis
 mybatis:
   mapperPackage: com.thinvent.nj.activiti.mapper
