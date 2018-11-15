@@ -34,6 +34,11 @@ public class MyUserEntityManager extends UserEntityManager {
 
     @Override
     public User findUserById(String userId) {
+
+        if (StringUtil.isNullOrEmpty(userId)) {
+            return null;
+        }
+
         com.thinvent.nj.uc.entity.User user = userService.get(userId);
         User result = new UserEntity(userId);
         result.setFirstName(user.getFullName());
@@ -50,6 +55,7 @@ public class MyUserEntityManager extends UserEntityManager {
         List<String> roleKeys = user.getRoleList().parallelStream().map(Role:: getCode).collect(Collectors.toList());
 
         Group group;
+
         for (String roleKey : roleKeys) {
             group = new GroupEntity(roleKey);
             group.setType("assignment");

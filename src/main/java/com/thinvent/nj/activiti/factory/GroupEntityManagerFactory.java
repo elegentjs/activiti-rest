@@ -2,6 +2,7 @@ package com.thinvent.nj.activiti.factory;
 
 import org.activiti.engine.impl.interceptor.Session;
 import org.activiti.engine.impl.interceptor.SessionFactory;
+import org.activiti.engine.impl.persistence.entity.GroupIdentityManager;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
 
@@ -17,7 +18,7 @@ public class GroupEntityManagerFactory implements SessionFactory {
 
     @Override
     public Class<?> getSessionType() {
-        return MyGroupEntityManager.class;
+        return GroupIdentityManager.class;
     }
 
     @Override

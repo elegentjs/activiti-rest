@@ -24,7 +24,7 @@ public class MyGroupEntityManager extends GroupEntityManager {
     private UserService userService;
 
 
-    @Override
+        @Override
     public List<Group> findGroupsByUser(String userId) {
         List<Group> groups = new ArrayList<>();
         com.thinvent.nj.uc.entity.User user = userService.get(userId);
