@@ -86,4 +86,12 @@ public class InstanceController extends AbstractActivitController {
             download(pde.getDiagramResourceName(), resource);
         }
     }
+
+
+    @RequestMapping(path = "/{id}", method = RequestMethod.DELETE)
+    @ResponseBody
+    public ResponseEntity del(@PathVariable("id") String id) {
+        runtimeService.deleteProcessInstance(id, "dreprecated.");
+        return ResponseEntity.ok();
+    }
 }

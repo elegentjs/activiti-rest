@@ -44,7 +44,8 @@
 
         formatter: {
             operation: function (val, row) {
-                return "<a target='_blank' href='" + masterpage.ctxp + pageLogic.initData.restUrlPrefix + "/" + row["id"] + "/diagram" + "'><i class='fa fa-building-o' title='查看流程进度' style='font-size: 1.2em'></i></a>&nbsp;&nbsp;&nbsp;";
+                return "<a target='_blank' href='" + masterpage.ctxp + pageLogic.initData.restUrlPrefix + "/" + row["id"] + "/diagram" + "'><i class='fa fa-building-o' title='查看流程进度' style='font-size: 1.8em'></i></a>&nbsp;&nbsp;&nbsp;"
+                     + "<i class='fa fa-trash-o' style='font-size: 1.8em' onclick='pageLogic.del(\"" + row["id"] + "\")'></i>";
             },
 
             processVariables: function (val, row) {
@@ -53,7 +54,7 @@
 
         },
 
-        /* 流程模型删除 */
+        /* 流程实例删除 */
         del: function (id) {
             common.del({
                 url: pageLogic.initData.restUrlPrefix + "/" + id

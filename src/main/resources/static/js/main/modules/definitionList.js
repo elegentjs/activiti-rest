@@ -56,7 +56,7 @@
             },
 
             operation: function (val, row) {
-                return "<i class='fa fa-download' style='font-size: 1.2em' onclick='pageLogic.download(\"" + row["id"] + "\")'></i>&nbsp;&nbsp;&nbsp;<i class='fa fa-trash-o' onclick='pageLogic.del(\"" + row["id"] + "\")'></i>";
+                return "<i class='fa fa-download' style='font-size: 2em' onclick='pageLogic.download(\"" + row["id"] + "\")'></i>&nbsp;&nbsp;&nbsp;<i class='fa fa-trash-o' style='font-size: 2em' onclick='pageLogic.del(\"" + row["id"] + "\")'></i>";
             },
 
             diagram: function (val, row) {
