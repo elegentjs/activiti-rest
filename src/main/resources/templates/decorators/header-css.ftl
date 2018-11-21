@@ -16,6 +16,6 @@
 <link type="text/css" rel="stylesheet" href="<@spring.message "frontend.url"/>/css/plugins/bootstrap/bootstrap-datetimepicker.css">
 
 <link type="text/css" rel="stylesheet" href="<@spring.message "frontend.url"/>/css/main/core.css?v=<@spring.message 'css.version'/>">
-<link type="text/css" rel="stylesheet" href="<@spring.message "frontend.url"/>/css/main/theme-default/main.css?v=<@spring.message 'css.version'/>" id="theme-change">
+<link type="text/css" rel="stylesheet" href="<@spring.message "frontend.url"/>/css/skin/theme-default/main.css?v=<@spring.message 'css.version'/>" id="theme-change">
 
 <sitemesh:write property='ex-section.CSS'/>
