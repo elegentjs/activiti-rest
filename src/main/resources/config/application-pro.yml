@@ -8,8 +8,20 @@ spring:
     url: jdbc:oracle:thin:@172.16.0.142:1521:zhfadb
     username: activiti
     password: activitipasswd2018
-
-# messageSource
-spring:
   messages:
     basename: msg/messages-pro,msg/messages
+
+#dubbo config
+dubbo:
+  zookeeper:
+    address: 172.16.5.210:2181
+  version:
+
+
+#spring boot admin
+  boot:
+    admin:
+      url: http://172.16.5.210:12306
+      client:
+        name: activiti-rest
+        prefer-ip: true
