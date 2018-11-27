@@ -1,13 +1,13 @@
 server:
-  context-path: /activiti
+  context-path: /
   port: 8080
 
 # jdbc
 spring:
   datasource:
-    url: jdbc:oracle:thin:@172.16.5.12:1521:oradb
-    username: zhfa
-    password: zhfa
+    url: jdbc:oracle:thin:@172.16.0.142:1521:zhfadb
+    username: activiti
+    password: activitipasswd2018
 
 # messageSource
 spring:
