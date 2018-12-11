@@ -20,7 +20,7 @@ import java.io.IOException;
 })
 @ComponentScan("com.thinvent.nj")
 public class Application {
-    public static void main(String[] args) throws IOException {
+    public static void main(String[] args) {
         SpringApplication.run(Application.class, args);
     }
 }
