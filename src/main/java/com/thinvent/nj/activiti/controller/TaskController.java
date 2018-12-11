@@ -30,16 +30,32 @@ public class TaskController extends AbstractActivitController {
             throw new IllegalArgumentException("params must contains userId");
         }
 
+        List<ProcessInstance> processInstances = runtimeService.createProcessInstanceQuery().active().processDefinitionKey(processDefinitionKey).list();
+
        List<Task> taskList = taskService.createTaskQuery().taskCandidateOrAssigned(userId)
-                   .processDefinitionKey(processDefinitionKey).list();
+                   .processDefinitionKey(processDefinitionKey).active().list();
 
         Map<String, String> businessKeyTaskIdMap = new HashMap<>(taskList.size());
         for (Task item : taskList) {
-            ProcessInstance instance = runtimeService.createProcessInstanceQuery().processInstanceId(item.getProcessInstanceId()).singleResult();
+            ProcessInstance instance = findTargetInstance(item.getProcessInstanceId(), processInstances);
             businessKeyTaskIdMap.put(instance.getBusinessKey(), item.getId());
         }
 
         return ResponseEntity.ok(businessKeyTaskIdMap);
+    }
+
+
+    private ProcessInstance findTargetInstance(String instanceId, List<ProcessInstance> instances) {
+        ProcessInstance result = null;
+
+        for (ProcessInstance item : instances) {
+            if (item.getId().equals(instanceId)) {
+                result = item;
+                break;
+            }
+        }
+
+        return result;
     }
 
     /**
