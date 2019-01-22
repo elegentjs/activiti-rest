@@ -22,7 +22,12 @@
         </div>
     </div>
 
+    <div class="row">
+        <img src="${request.contextPath}/img/favicon.ico">
+    </div>
 </div>
+
+
 
 <ex-section id="ScriptBody">
 
