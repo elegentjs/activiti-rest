@@ -8,6 +8,8 @@ import org.activiti.engine.impl.GroupQueryImpl;
 import org.activiti.engine.impl.Page;
 import org.activiti.engine.impl.persistence.entity.GroupEntity;
 import org.activiti.engine.impl.persistence.entity.GroupEntityManager;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
 
@@ -20,12 +22,15 @@ import java.util.stream.Collectors;
 @Component
 public class MyGroupEntityManager extends GroupEntityManager {
 
+    private static final Logger logger = LoggerFactory.getLogger(MyGroupEntityManager.class);
+
     @Autowired
     private UserService userService;
 
-
-        @Override
+    @Override
     public List<Group> findGroupsByUser(String userId) {
+        logger.info("=============>  in findGroupsByUser : userId : " + userId);
+
         List<Group> groups = new ArrayList<>();
         com.thinvent.nj.uc.entity.User user = userService.get(userId);
         List<String> roleKeys = user.getRoleList().parallelStream().map(Role:: getCode).collect(Collectors.toList());
