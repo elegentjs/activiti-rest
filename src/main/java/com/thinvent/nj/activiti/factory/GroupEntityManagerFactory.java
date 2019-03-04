@@ -8,7 +8,8 @@ import org.springframework.stereotype.Component;
 
 /**
  * 自定义的GroupEntityManagerFactory
- * @author liupeijun 
+ * @author liupj
+ * @date 2019/02/18
  */
 @Component
 public class GroupEntityManagerFactory implements SessionFactory {

@@ -1,6 +1,6 @@
 server:
   context-path: /
-  port: 8080
+  port: 8085
 
 # jdbc
 spring:

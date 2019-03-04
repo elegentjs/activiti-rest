@@ -15,7 +15,8 @@ import java.util.Map;
  *
  * 本Controller是对标准activiti-rest的补充
  *
- * @author liupeijun
+ * @author liupj
+ * @date 2019/02/21
  */
 @RestController
 @RequestMapping(path = "/runtime")

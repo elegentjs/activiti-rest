@@ -19,6 +19,10 @@ import java.util.List;
 import java.util.Map;
 import java.util.stream.Collectors;
 
+/**
+ * @author liupj
+ * @date 2019/02/18
+ */
 @Component
 public class MyGroupEntityManager extends GroupEntityManager {
 

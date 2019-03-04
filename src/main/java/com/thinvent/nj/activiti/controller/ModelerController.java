@@ -24,6 +24,10 @@ import static org.activiti.editor.constants.ModelDataJsonConstants.MODEL_DESCRIP
 import static org.activiti.editor.constants.ModelDataJsonConstants.MODEL_ID;
 import static org.activiti.editor.constants.ModelDataJsonConstants.MODEL_NAME;
 
+/**
+ * @author liupj
+ * @date 2019/02/21
+ */
 @RestController
 @RequestMapping(path = "/modeler")
 public class ModelerController extends AbstractActivitController {

@@ -24,7 +24,8 @@ import java.util.stream.Collectors;
 /**
  * 自定义UserEntityManager, 用于替换默认的UserEntityManager
  * 放弃使用activiti自带的用户角色管理，接入uc系统的用户角色管理
- *
+ * @author liupj
+ * @date 2019/02/19
  */
 @Component
 public class MyUserEntityManager extends UserEntityManager {
