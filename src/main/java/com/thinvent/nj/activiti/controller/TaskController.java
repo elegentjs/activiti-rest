@@ -33,23 +33,15 @@ public class TaskController extends AbstractActivitController {
 
         List<ProcessInstance> processInstances = runtimeService.createProcessInstanceQuery().active().processDefinitionKey(processDefinitionKey).list();
 
-        logger.info("processInstances length : " + processInstances.size());
 
        List<Task> taskList = taskService.createTaskQuery().taskCandidateOrAssigned(userId)
                    .processDefinitionKey(processDefinitionKey).active().list();
-
-       logger.info("taskList length : " + taskList.size());
-       for (Task item : taskList) {
-           logger.info("instanceId : " + item.getProcessInstanceId() + ", " + item);
-       }
 
         Map<String, String> businessKeyTaskIdMap = new HashMap<>(taskList.size());
         for (Task item : taskList) {
             ProcessInstance instance = findTargetInstance(item.getProcessInstanceId(), processInstances);
             businessKeyTaskIdMap.put(instance.getBusinessKey(), item.getId());
         }
-
-        logger.info("businessKeyTaskIdMap : " + businessKeyTaskIdMap);
 
         return ResponseEntity.ok(businessKeyTaskIdMap);
     }
