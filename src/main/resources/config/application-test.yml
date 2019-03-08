@@ -1,5 +1,5 @@
 server:
-  context-path: /activiti
+  context-path: /
   port: 8080
 
 # jdbc
@@ -8,8 +8,20 @@ spring:
     url: jdbc:oracle:thin:@172.16.5.12:1521:oradb
     username: zhfa
     password: zhfa
-
-# messageSource
-spring:
   messages:
     basename: msg/messages-test,msg/messages
+
+#dubbo config
+dubbo:
+  zookeeper:
+    address: 172.16.5.210:2181
+  version:
+
+
+  #spring boot admin
+  boot:
+    admin:
+      url: http://172.16.5.210:12306
+      client:
+        name: activiti-rest
+        prefer-ip: true

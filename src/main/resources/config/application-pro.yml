@@ -1,27 +1,27 @@
 server:
   context-path: /
-  port: 8080
+  port: 8094
 
 # jdbc
 spring:
   datasource:
-    url: jdbc:oracle:thin:@172.16.0.142:1521:zhfadb
-    username: activiti
-    password: activitipasswd2018
+    url: jdbc:oracle:thin:@//10.196.68.204:1621/njdx_njracdb2
+    username: fangan_activiti
+    password: H6tfVIZ2
   messages:
     basename: msg/messages-pro,msg/messages
 
 #dubbo config
 dubbo:
   zookeeper:
-    address: 172.16.0.143:2181
+    address: 10.101.86.121:2181
   version:
 
 
-#spring boot admin
+  #spring boot admin
   boot:
     admin:
-      url: http://172.16.0.143:12306
+      url: http://10.101.86.121:8092
       client:
         name: activiti-rest
         prefer-ip: true
