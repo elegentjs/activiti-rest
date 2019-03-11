@@ -1,11 +1,24 @@
 package com.thinvent.nj.activiti.controller;
 
+import com.thinvent.nj.activiti.cmd.JumpActivityCmd;
 import com.thinvent.nj.common.rest.ResponseEntity;
 import com.thinvent.nj.common.util.StringUtil;
+import org.activiti.bpmn.model.BpmnModel;
+import org.activiti.bpmn.model.FlowNode;
+import org.activiti.bpmn.model.Process;
+import org.activiti.bpmn.model.SequenceFlow;
+import org.activiti.engine.history.HistoricTaskInstance;
+import org.activiti.engine.impl.RepositoryServiceImpl;
+import org.activiti.engine.impl.persistence.entity.ExecutionEntity;
+import org.activiti.engine.impl.persistence.entity.ProcessDefinitionEntity;
+import org.activiti.engine.impl.pvm.process.ActivityImpl;
+import org.activiti.engine.impl.task.TaskDefinition;
+import org.activiti.engine.repository.ProcessDefinition;
 import org.activiti.engine.runtime.ProcessInstance;
 import org.activiti.engine.task.Task;
 import org.springframework.web.bind.annotation.*;
 
+import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
@@ -70,4 +83,29 @@ public class TaskController extends AbstractActivitController {
         taskService.unclaim(taskId);
         return ResponseEntity.ok();
     }
+
+
+    @RequestMapping(path = "/tasks/{id}/rollback", method = RequestMethod.POST)
+    @ResponseBody
+    public ResponseEntity rollback(@PathVariable("id") String taskId, @RequestParam("taskKey") String taskKey) {
+        Task curTask = taskService.createTaskQuery().taskId(taskId).singleResult();
+        String instanceId = curTask.getProcessInstanceId();
+
+        ProcessInstance processInstance = runtimeService.createProcessInstanceQuery().processInstanceId(instanceId).singleResult();
+
+        // 取得流程定义
+        ProcessDefinitionEntity definition = (ProcessDefinitionEntity) repositoryService.getProcessDefinition(processInstance.getProcessDefinitionId());
+
+        // 获取需要驳回的Activity
+        ActivityImpl rollbackActivity = definition.findActivity(taskKey);
+
+        // 实现跳转
+        managementService.executeCommand(new JumpActivityCmd(rollbackActivity.getId(), processInstance.getId()));
+
+        return ResponseEntity.ok();
+    }
+
+
+
+
 }
